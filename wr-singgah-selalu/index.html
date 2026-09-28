@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WR. Singgah Selalu — Kasir</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+  <!-- HALAMAN KASIR -->
+  <div id="halamanKasir">
+    <header>
+      <h1>WR. Singgah Selalu</h1>
+      <button class="titik-tiga">⋮</button>
+    </header>
+
+    <div class="layar">
+      <nav class="kategori">
+        <button class="tab aktif" data-kategori="catering">Catering</button>
+        <button class="tab" data-kategori="prasmanan">Prasmanan</button>
+        <button class="tab" data-kategori="resto">Resto</button>
+      </nav>
+
+      <main class="daftar-menu" id="daftarMenu"></main>
+
+      <aside class="pesanan">
+        <h2>Pesanan</h2>
+        <div class="isi-pesanan">
+          <p class="kosong">Belum ada pesanan</p>
+        </div>
+        <div class="total-baris">
+          <span>Total</span>
+          <span class="total">Rp 0</span>
+        </div>
+        <button class="tombol-payment">Payment</button>
+      </aside>
+    </div>
+  </div>
+
+  <!-- HALAMAN EDIT MENU -->
+  <div id="halamanEdit" class="sembunyi">
+    <header>
+      <h1 id="judulForm">Tambah Menu</h1>
+    </header>
+
+    <div class="isi-edit">
+      <label class="kotak-foto">
+        <span class="plus-foto">+</span>
+        <img id="previewFoto" alt="">
+        <input type="file" id="inputFoto" accept="image/*" hidden>
+      </label>
+
+      <input type="text" id="inputNama" placeholder="Nama produk">
+      <input type="text" id="inputHarga" inputmode="numeric" placeholder="Harga">
+
+      <div class="form-tombol">
+        <button class="batal" id="tombolBatal">Batal</button>
+        <button class="hapus" id="tombolHapus">Hapus</button>
+        <button class="simpan" id="tombolSimpan">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/app.js"></script>
+</body>
+</html>

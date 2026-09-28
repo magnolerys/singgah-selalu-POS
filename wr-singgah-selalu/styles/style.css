@@ -1,0 +1,283 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #F2F6F4;
+  color: #12271F;
+}
+
+/* halaman yang sedang tidak dipakai */
+.sembunyi {
+  display: none;
+}
+
+header {
+  position: relative;
+  background-color: #046C4E;
+  color: #FFFFFF;
+  padding: 16px 24px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 20px;
+  letter-spacing: 0.5px;
+}
+
+.titik-tiga {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ===== HALAMAN KASIR ===== */
+.layar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 18px;
+  align-items: flex-start;
+}
+
+.kategori {
+  flex: 0 0 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tab {
+  background-color: #FFFFFF;
+  border: 2px solid #D6E5DE;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: inherit;
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tab.aktif {
+  background-color: #046C4E;
+  border-color: #046C4E;
+  color: #FFFFFF;
+}
+
+.daftar-menu {
+  flex: 2 1 320px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-content: flex-start;
+}
+
+.kartu {
+  flex: 0 1 150px;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.area-foto {
+  width: 100%;
+  height: 100px;
+  background-color: #E8EFEB;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.area-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.baris-nama {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.nama {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.harga {
+  font-size: 14px;
+  color: #046C4E;
+  margin-top: 2px;
+}
+
+.tambah {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background-color: #046C4E;
+  color: #FFFFFF;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.slot-tambah {
+  min-height: 160px;
+  background-color: #E8EFEB;
+  border: 2px dashed #A9C5B9;
+  color: #6F8B80;
+  font-size: 36px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.slot-tambah:hover {
+  border-color: #046C4E;
+  color: #046C4E;
+}
+
+.pesanan {
+  flex: 1 1 260px;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.pesanan h2 {
+  font-size: 17px;
+  color: #046C4E;
+  margin-bottom: 12px;
+}
+
+.isi-pesanan {
+  min-height: 200px;
+  border-bottom: 1px solid #D6E5DE;
+  padding-bottom: 12px;
+}
+
+.kosong {
+  color: #7C8F87;
+  font-size: 14px;
+}
+
+.total-baris {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.total {
+  color: #046C4E;
+}
+
+.tombol-payment {
+  width: 100%;
+  background-color: #046C4E;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* ===== HALAMAN EDIT MENU ===== */
+.isi-edit {
+  max-width: 460px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.kotak-foto {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background-color: #E8EFEB;
+  border: 2px dashed #A9C5B9;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.plus-foto {
+  font-size: 44px;
+  color: #6F8B80;
+}
+
+.kotak-foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kotak-foto img:not([src]),
+.kotak-foto img[src=""] {
+  display: none;
+}
+
+.isi-edit input {
+  border: 2px solid #D6E5DE;
+  border-radius: 10px;
+  padding: 16px;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.isi-edit input::placeholder {
+  color: #A2B4AC;
+}
+
+/* tiga tombol sama lebar */
+.form-tombol {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.form-tombol button {
+  flex: 1;
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  font-family: inherit;
+  font-size: 16px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.batal {
+  background-color: #8A9A94;
+}
+
+.hapus {
+  background-color: #C62828;
+}
+
+.simpan {
+  background-color: #046C4E;
+}
