@@ -1,4 +1,5 @@
-const menu = {
+// menu bawaan kalau belum pernah menyimpan apa pun
+const menuAwal = {
   catering: [],
   prasmanan: [],
   resto: [
@@ -6,6 +7,15 @@ const menu = {
     { nama: "Telur", harga: 3000, foto: "" }
   ]
 };
+
+// ambil menu yang tersimpan di browser; kalau belum ada, pakai menu bawaan
+const tersimpan = localStorage.getItem("menuWarung");
+const menu = tersimpan ? JSON.parse(tersimpan) : menuAwal;
+
+// simpan menu ke browser supaya tidak hilang saat refresh
+function simpanMenu() {
+  localStorage.setItem("menuWarung", JSON.stringify(menu));
+}
 
 let kategoriAktif = "catering";
 let fotoSementara = "";
@@ -20,6 +30,7 @@ const previewFoto = document.getElementById("previewFoto");
 const inputNama = document.getElementById("inputNama");
 const inputHarga = document.getElementById("inputHarga");
 const tombolHapus = document.getElementById("tombolHapus");
+
 
 function rupiah(angka) {
   return "Rp " + angka.toLocaleString("id-ID");
@@ -52,7 +63,10 @@ function tampilkanMenu() {
       '<p class="harga">' + rupiah(item.harga) + '</p>';
 
     kartu.onclick = function (e) {
-      if (e.target.classList.contains("tambah")) return;
+      if (e.target.classList.contains("tambah")) {
+        tambahKePesanan(item);
+        return;
+      }
       bukaEdit(i);
     };
 
@@ -109,6 +123,7 @@ inputFoto.onchange = function () {
 };
 
 document.getElementById("tombolBatal").onclick = tutupEdit;
+document.getElementById("tombolBack").onclick = tutupEdit;
 
 document.getElementById("tombolSimpan").onclick = function () {
   const nama = inputNama.value.trim();
@@ -127,6 +142,7 @@ document.getElementById("tombolSimpan").onclick = function () {
     menu[kategoriAktif][indexEdit] = data;
   }
 
+  simpanMenu();
   tutupEdit();
   tampilkanMenu();
 };
@@ -134,6 +150,7 @@ document.getElementById("tombolSimpan").onclick = function () {
 tombolHapus.onclick = function () {
   if (!confirm("Hapus menu ini?")) return;
   menu[kategoriAktif].splice(indexEdit, 1);
+  simpanMenu();
   tutupEdit();
   tampilkanMenu();
 };
@@ -147,4 +164,80 @@ document.querySelectorAll(".tab").forEach(function (tab) {
   };
 });
 
+// ===== PESANAN =====
+
+let pesanan = [];
+
+const isiPesanan = document.getElementById("isiPesanan");
+const totalHarga = document.getElementById("totalHarga");
+
+function tambahKePesanan(item) {
+  const sudahAda = pesanan.find(function (p) {
+    return p.nama === item.nama && p.harga === item.harga;
+  });
+
+  if (sudahAda) {
+    sudahAda.jumlah = sudahAda.jumlah + 1;
+  } else {
+    pesanan.push({ nama: item.nama, harga: item.harga, jumlah: 1 });
+  }
+
+  tampilkanPesanan();
+}
+
+function kurangiPesanan(i) {
+  pesanan[i].jumlah = pesanan[i].jumlah - 1;
+  if (pesanan[i].jumlah === 0) {
+    pesanan.splice(i, 1);
+  }
+  tampilkanPesanan();
+}
+
+function hapusPesanan(i) {
+  pesanan.splice(i, 1);
+  tampilkanPesanan();
+}
+
+function tampilkanPesanan() {
+  isiPesanan.innerHTML = "";
+
+  if (pesanan.length === 0) {
+    isiPesanan.innerHTML = '<p class="kosong">Belum ada pesanan</p>';
+    totalHarga.textContent = "Rp 0";
+    return;
+  }
+
+  let total = 0;
+
+  pesanan.forEach(function (p, i) {
+    total = total + p.harga * p.jumlah;
+
+    const baris = document.createElement("div");
+    baris.className = "baris-pesanan";
+    baris.innerHTML =
+      '<div class="pesanan-kiri">' +
+        '<p class="pesanan-nama">' + p.nama + '</p>' +
+        '<p class="pesanan-subtotal">' + rupiah(p.harga * p.jumlah) + '</p>' +
+      '</div>' +
+      '<div class="pesanan-kanan">' +
+        '<button class="kurang">−</button>' +
+        '<span class="jumlah">' + p.jumlah + '</span>' +
+        '<button class="tambah-kecil">+</button>' +
+        '<button class="hapus-item">✕</button>' +
+      '</div>';
+
+    baris.querySelector(".kurang").onclick = function () { kurangiPesanan(i); };
+    baris.querySelector(".tambah-kecil").onclick = function () {
+      pesanan[i].jumlah = pesanan[i].jumlah + 1;
+      tampilkanPesanan();
+    };
+    baris.querySelector(".hapus-item").onclick = function () { hapusPesanan(i); };
+
+    isiPesanan.appendChild(baris);
+  });
+
+  totalHarga.textContent = rupiah(total);
+}
+
 tampilkanMenu();
+tampilkanPesanan();

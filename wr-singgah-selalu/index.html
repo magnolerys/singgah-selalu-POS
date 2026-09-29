@@ -24,14 +24,12 @@
 
       <main class="daftar-menu" id="daftarMenu"></main>
 
-      <aside class="pesanan">
+            <aside class="pesanan">
         <h2>Pesanan</h2>
-        <div class="isi-pesanan">
-          <p class="kosong">Belum ada pesanan</p>
-        </div>
+        <div class="isi-pesanan" id="isiPesanan"></div>
         <div class="total-baris">
           <span>Total</span>
-          <span class="total">Rp 0</span>
+          <span class="total" id="totalHarga">Rp 0</span>
         </div>
         <button class="tombol-payment">Payment</button>
       </aside>
@@ -41,6 +39,7 @@
   <!-- HALAMAN EDIT MENU -->
   <div id="halamanEdit" class="sembunyi">
     <header>
+      <button class="back-edit" id="tombolBack">←</button>
       <h1 id="judulForm">Tambah Menu</h1>
     </header>
 

@@ -281,3 +281,64 @@ header h1 {
 .simpan {
   background-color: #046C4E;
 }
+
+.baris-pesanan {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #EDF3F0;
+}
+
+.pesanan-nama {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.pesanan-subtotal {
+  font-size: 14px;
+  color: #046C4E;
+}
+
+.pesanan-kanan {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pesanan-kanan button {
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 6px;
+  background-color: #E8EFEB;
+  color: #12271F;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.hapus-item {
+  color: #C62828;
+}
+
+.jumlah {
+  min-width: 20px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.back-edit {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
